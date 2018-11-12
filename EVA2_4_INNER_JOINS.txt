@@ -1,0 +1,100 @@
+ MySQL  SQL > \connect -c root@localhost
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost:3306'? [Y]es/[N]o/Ne[v]er (default No):
+Fetching schema names for autocompletion... Press ^C to stop.
+Your MySQL connection id is 14
+Server version: 8.0.12 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+
+ MySQL  localhost:3306 ssl  SQL > show databases;
++------------------------+
+| Database               |
++------------------------+
+| boleto                 |
+| estudiante             |
+| evaluacion_2           |
+| information_schema     |
+| mysql                  |
+| northwind              |
+| performance_schema     |
+| prac                   |
+| practica               |
+| practicaene            |
+| proyectopersonal2      |
+| prueba                 |
+| prueba2                |
+| sakila                 |
+| sys                    |
+| test                   |
+| ticket_master_westeros |
+| world                  |
++------------------------+
+18 rows in set (0.0010 sec)
+
+ MySQL  localhost:3306 ssl  SQL > use northwind;
+Default schema set to `northwind`.
+Fetching table and column names from `northwind` for auto-completion... Press ^C to stop.
+
+ MySQL  localhost:3306 ssl  northwind  SQL > show tables;
++----------------------+
+| Tables_in_northwind  |
++----------------------+
+| categories           |
+| customercustomerdemo |
+| customerdemographics |
+| customers            |
+| employees            |
+| employeeterritories  |
+| order_details        |
+| orders               |
+| products             |
+| region               |
+| shippers             |
+| suppliers            |
+| territories          |
+| usstates             |
++----------------------+
+14 rows in set (0.0017 sec)
+
+
+
+order details order id
+products product name 
+categories category name
+suppliers company name
+limit 100
+
+order id ----->products ->product id
+products - categories -> categorid
+products - suppliers -suplierdid
+
+
+
+
+use northwind;
+select a.orderid, b.productname, a.Quantity , a.unitprice , (a.Quantity * a.UnitPrice) as subtotal, c.categoryname, d.companyname
+	from order_details a
+    inner join  products b on a.productid = b.productid
+    inner join categories c on b.categoryid = c.categoryid
+    inner join suppliers d on b.supplierid = d.supplierid 
+    limit 100;
+
+
+orders employees employeeid
+
+region regionid region description
+
+firstname lastname
+ 
+region- territories-  
+
+select a.firstname , a.lastname 
+
+
+
+
+
+
+ 

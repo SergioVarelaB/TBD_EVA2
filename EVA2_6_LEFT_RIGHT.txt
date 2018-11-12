@@ -1,0 +1,77 @@
+//solo agrego los querys por fallas en el shell
+EVA2_6_left_rigth_joins
+
+use evaluacion_2;
+
+select * from tabla_a;
+
+select * from tabla_b;
+
+select * from tabla_a a
+	
+	inner join tabla_b b on a.nombre = b.nombre;
+
+
+select * from tabla_a a
+
+	left outer join tabla_b b on a.nombre = b.nombre;
+
+    
+select * from tabla_a a
+
+	right outer join tabla_b b on a.nombre = b.nombre;
+
+    
+select * from tabla_a a
+	left outer join tabla_b b on a.nombre = b.nombre
+ 
+    where b.nombre is null;
+
+
+select * from tabla_a a
+	right outer join tabla_b b on a.nombre = b.nombre
+ 
+    where a.nombre is null;
+
+
+select * from tabla_a a
+	
+	right outer join tabla_b b on a.nombre = b.nombre
+ 
+    	where a.nombre is not null;
+    
+
+
+
+use northwind;
+
+
+select a.orderid, b.companyname from orders a
+
+	right join customers b on a.customerid = b.customerid
+
+    order by a.orderid;
+select a.orderid, b.companyname from orders a
+
+	right join customers b on a.customerid = b.customerid
+
+	where a.orderid is null;
+
+
+select a.orderid, b.companyname from orders a
+
+	left join customers b on a.customerid = b.customerid
+
+    order by a.orderid;
+    
+
+select a.orderid, b.companyname from orders a
+
+	right join customers b on a.customerid = b.customerid
+
+        where a.orderid is null;   
+select b.productname from order_details a
+
+	right join products b on a.productID = b.productID
+
+        where a.orderid is null; 

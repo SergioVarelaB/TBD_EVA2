@@ -1,0 +1,97 @@
+EVA2_5_GROUP_HAVING
+
+
+
+MySQL Shell 8.0.12
+
+Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+
+
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+
+ MySQL  SQL > \connect -c root@localhost
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost:3306'? [Y]es/[N]o/Ne[v]er (default No):
+Fetching schema names for autocompletion... Press ^C to stop.
+Your MySQL connection id is 14
+Server version: 8.0.12 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+
+ MySQL  localhost:3306 ssl  SQL > use northwind;
+Default schema set to `northwind`.
+Fetching table and column names from `northwind` for auto-completion... Press ^C to stop.
+
+ MySQL  localhost:3306 ssl  northwind  SQL > select productId, productname from product;
+ERROR: 1146 (42S02): Table 'northwind.product' doesn't exist
+
+ MySQL  localhost:3306 ssl  northwind  SQL > select productId, productname from products;
++-----------+-----------------------------------+
+| productId | productname                       |
++-----------+-----------------------------------+
+|        17 | Alice Mutton                      |
+|         3 | Aniseed Syrup                     |
+|        40 | Boston Crab Meat                  |
+|        60 | Camembert Pierrot                 |
+|        18 | Carnarvon Tigers                  |
+|         1 | Chai                              |
+|         2 | Chang                             |
+|        39 | Chartreuse verte                  |
+|         4 | Chef Anton's Cajun Seasoning      |
+|         5 | Chef Anton's Gumbo Mix            |
+|        48 | Chocolade                         |
+|        38 | C MySQL  localhost:3306 ssl  no
+
+
+//a partir de aqui solo agrego los querys por fallas en el shell
+
+select b.productname, (a.unitprice * a.quantity) as subtotal
+	from order_details a 
+    inner join 
+
+
+select b.productname, (a.unitprice * a.quantity) as subtotal
+	from order_details a 
+    
+inner join products b on a.productid = b.productid;
+
+
+select sum(quantity * unitprice ) from order_details;
+
+
+use northwind;
+select b.productname, sum(a.quantity * a.unitprice ) as total 
+	from order_details a 
+    inner join products b on a.productid = b.productid
+   
+ group by a.productid;
+
+select productid from products where productname like 'chai';
+select productname from products where productid = 1;
+select sum(quantity * unitprice) as total from order_details
+	where productid = 1;
+
+
+nombre del cliente y cuanto ha comprado
+
+select c.companyname, sum(a.quantity * a.unitprice) as total 
+	from order_details a 
+    inner join  orders b on a.orderid = b.orderid 
+    inner join customers c  on b.customerid = c.customerid group by c.customerid
+
+
+select c.companyname, sum(a.quantity * a.unitprice) as total 
+	from order_details a 
+    inner join  orders b on a.orderid = b.orderid 
+    inner join customers c  on b.customerid = c.customerid group by c.customerid
+    having total > 10000;
+
+productos que tengan mas de 10000 dlls en venta

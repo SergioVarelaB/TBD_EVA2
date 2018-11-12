@@ -1,0 +1,56 @@
+//a partir de aqui solo agrego los querys por fallas en el shell
+use evaluacion_2;
+
+
+select * from tabla_a a
+
+	right outer join tabla_b b on a.nombre = b.nombre
+
+	where a.nombre is null
+    union all
+
+    	select * from tabla_a a
+
+	left outer join tabla_b b on a.nombre = b.nombre
+
+	where b.nombre is  null
+
+    	union all
+
+    	select * from tabla_a a
+
+	inner join tabla_b b on a.nombre = b.nombre;
+
+
+
+
+select * from tabla_a a
+	right join tabla_b b on a.nombre = b.nombre
+
+    union all
+
+    select * from tabla_a a
+
+	left outer join tabla_b b on a.nombre = b.nombre
+
+    where b.nombre is null;
+
+
+
+use northwind;
+
+
+select * from customers;
+
+
+select a.orderid, b.customerid, b.companyname from orders a
+
+	right join customers b on a.customerid = b.customerid
+
+    	union all
+
+    	select a.orderid, b.customerid, b.companyname from orders a
+
+    	left outer join customers b on a.customerid = b.customerid
+
+    	where b.customerid is null;

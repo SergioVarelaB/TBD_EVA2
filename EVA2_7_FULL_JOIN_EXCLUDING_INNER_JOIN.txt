@@ -1,0 +1,83 @@
+//solo agrego los querys por fallas en el shell
+
+use evaluacion_2;
+select * from tabla_a a
+
+	left join tabla_b b on a.nombre = b.nombre;
+
+
+select * from tabla_a a
+	
+	right join tabla_b b on a.nombre = b.nombre;
+
+    
+    
+
+select * from tabla_a a
+	left join tabla_b b on a.nombre = b.nombre
+
+	where b.nombre is null
+    
+union select * from tabla_a a
+	
+right join tabla_b b on a.nombre = b.nombre
+	
+where a.nombre is null;
+
+customer id company name 
+
+use northwind;
+
+select * from order_details a
+
+	right join products b on a.productid = b.productid
+
+	where a.productid is null
+
+        union
+ 
+       select * from order_details a
+
+	right join products b on a.productid = b.productid
+
+	where b.productid is null;
+    
+    
+
+
+select * from orders;
+
+
+
+select a.orderid, a.customerid , b.companyname from orders a
+
+	right join  customers b on a.customerid = b.customerid
+   
+	where a.customerid is null
+
+        union
+    
+    select a.orderid, a.customerid,  b.companyname from orders a
+
+	left join  customers b on a.customerid = b.customerid 
+	where b.customerid is null;
+
+
+select a.orderid, a.customerid , b.companyname from orders a
+
+
+	right join  customers b on a.customerid = b.customerid
+
+   
+	where a.customerid is null
+
+
+        union all
+
+    
+    select a.orderid, a.customerid,  b.companyname from orders a
+
+
+	left join  customers b on a.customerid = b.customerid
+ 
+	where b.customerid is null;

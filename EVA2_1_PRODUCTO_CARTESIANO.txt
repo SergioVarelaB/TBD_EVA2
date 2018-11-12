@@ -1,0 +1,327 @@
+ MySQL  localhost:3306 ssl  SQL > create table B( nombre varchar(45));
+Query OK, 0 rows affected (0.19 sec)
+
+ MySQL  localhost:3306 ssl  evaluacion_2  SQL > show tables;
++------------------------+
+| Tables_in_evaluacion_2 |
++------------------------+
+| a                      |
+| b                      |
++------------------------+
+
+ MySQL  localhost:3306 ssl  evaluacion_2  SQL > select * from a;
++--------+
+| nombre |
++--------+
+| 1      |
+| 2      |
+| 3      |
+| 4      |
+| 5      |
++--------+
+5 rows in set (0.0116 sec)
+
+ MySQL  localhost:3306 ssl  evaluacion_2  SQL > select * from b;
++--------+
+| nombre |
++--------+
+| a      |
+| b      |
+| c      |
+| d      |
+| e      |
++--------+
+5 rows in set (0.0142 sec) 
+
+ MySQL  localhost:3306 ssl  evaluacion_2  SQL > select * from a,b;
++--------+--------+
+| nombre | nombre |
++--------+--------+
+| 1      | a      |
+| 2      | a      |
+| 3      | a      |
+| 4      | a      |
+| 5      | a      |
+| 1      | b      |
+| 2      | b      |
+| 3      | b      |
+| 4      | b      |
+| 5      | b      |
+| 1      | c      |
+| 2      | c      |
+| 3      | c      |
+| 4      | c      |
+| 5      | c      |
+| 1      | d      |
+| 2      | d      |
+| 3      | d      |
+| 4      | d      |
+| 5      | d      |
+| 1      | e      |
+| 2      | e      |
+| 3      | e      |
+| 4      | e      |
+| 5      | e      |
++--------+--------+
+25 rows in set (0.0005 sec)
+
+ MySQL  localhost:3306 ssl  evaluacion_2  SQL > select * from b,a;
++--------+--------+
+| nombre | nombre |
++--------+--------+
+| a      | 1      |
+| b      | 1      |
+| c      | 1      |
+| d      | 1      |
+| e      | 1      |
+| a      | 2      |
+| b      | 2      |
+| c      | 2      |
+| d      | 2      |
+| e      | 2      |
+| a      | 3      |
+| b      | 3      |
+| c      | 3      |
+| d      | 3      |
+| e      | 3      |
+| a      | 4      |
+| b      | 4      |
+| c      | 4      |
+| d      | 4      |
+| e      | 4      |
+| a      | 5      |
+| b      | 5      |
+| c      | 5      |
+| d      | 5      |
+| e      | 5      |
++--------+--------+
+25 rows in set (0.0007 sec)
+
+ MySQL  localhost:3306 ssl  evaluacion_2  SQL > select a.nombre, b.nombre from a,b;
++--------+--------+
+| nombre | nombre |
++--------+--------+
+| 1      | a      |
+| 2      | a      |
+| 3      | a      |
+| 4      | a      |
+| 5      | a      |
+| 1      | b      |
+| 2      | b      |
+| 3      | b      |
+| 4      | b      |
+| 5      | b      |
+| 1      | c      |
+| 2      | c      |
+| 3      | c      |
+| 4      | c      |
+| 5      | c      |
+| 1      | d      |
+| 2      | d      |
+| 3      | d      |
+| 4      | d      |
+| 5      | d      |
+| 1      | e      |
+| 2      | e      |
+| 3      | e      |
+| 4      | e      |
+| 5      | e      |
++--------+--------+
+25 rows in set (0.0005 sec)
+
+ MySQL  localhost:3306 ssl  evaluacion_2  SQL > select * from a,b order by a.nombre;
++--------+--------+
+| nombre | nombre |
++--------+--------+
+| 1      | d      |
+| 1      | a      |
+| 1      | c      |
+| 1      | e      |
+| 1      | b      |
+| 2      | b      |
+| 2      | d      |
+| 2      | a      |
+| 2      | c      |
+| 2      | e      |
+| 3      | e      |
+| 3      | b      |
+| 3      | d      |
+| 3      | a      |
+| 3      | c      |
+| 4      | e      |
+| 4      | b      |
+| 4      | d      |
+| 4      | a      |
+| 4      | c      |
+| 5      | c      |
+| 5      | e      |
+| 5      | b      |
+| 5      | d      |
+| 5      | a      |
++--------+--------+
+25 rows in set (0.0006 sec)
+
+ MySQL  localhost:3306 ssl  evaluacion_2  SQL > select * from a,b order by a.nombre, b.nombre;
++--------+--------+
+| nombre | nombre |
++--------+--------+
+| 1      | a      |
+| 1      | b      |
+| 1      | c      |
+| 1      | d      |
+| 1      | e      |
+| 2      | a      |
+| 2      | b      |
+| 2      | c      |
+| 2      | d      |
+| 2      | e      |
+| 3      | a      |
+| 3      | b      |
+| 3      | c      |
+| 3      | d      |
+| 3      | e      |
+| 4      | a      |
+| 4      | b      |
+| 4      | c      |
+| 4      | d      |
+| 4      | e      |
+| 5      | a      |
+| 5      | b      |
+| 5      | c      |
+| 5      | d      |
+| 5      | e      |
++--------+--------+
+25 rows in set (0.0004 sec)
+
+mysql> select * from b,a order by b.nombre, a.nombre;
++--------+--------+
+| nombre | nombre |
++--------+--------+
+| A      | 1      |
+| A      | 2      |
+| A      | 3      |
+| A      | 4      |
+| A      | 5      |
+| B      | 1      |
+| B      | 2      |
+| B      | 3      |
+| B      | 4      |
+| B      | 5      |
+| C      | 1      |
+| C      | 2      |
+| C      | 3      |
+| C      | 4      |
+| C      | 5      |
+| D      | 1      |
+| D      | 2      |
+| D      | 3      |
+| D      | 4      |
+| D      | 5      |
+| E      | 1      |
+| E      | 2      |
+| E      | 3      |
+| E      | 4      |
+| E      | 5      |
++--------+--------+
+25 rows in set (0.00 sec)
+
+ MySQL  localhost:3306 ssl  evaluacion_2  SQL > select b.nombre as NOMBRE_B, a.nombre as NOMBRE_A
+                                            ... from b,a order by b.nombre, a.nombre;
++----------+----------+
+| NOMBRE_B | NOMBRE_A |
++----------+----------+
+| a        | 1        |
+| a        | 2        |
+| a        | 3        |
+| a        | 4        |
+| a        | 5        |
+| b        | 1        |
+| b        | 2        |
+| b        | 3        |
+| b        | 4        |
+| b        | 5        |
+| c        | 1        |
+| c        | 2        |
+| c        | 3        |
+| c        | 4        |
+| c        | 5        |
+| d        | 1        |
+| d        | 2        |
+| d        | 3        |
+| d        | 4        |
+| d        | 5        |
+| e        | 1        |
+| e        | 2        |
+| e        | 3        |
+| e        | 4        |
+| e        | 5        |
++----------+----------+
+25 rows in set (0.0011 sec)
+
+ MySQL  localhost:3306 ssl  evaluacion_2  SQL > select TABLA_B.nombre as Nombre_B, TABLA_A.nombre as Nombre_A from b TABLA_B, a TABLA_A order by TABLA_B.nombre, TABLA_A.nombre;
++----------+----------+
+| Nombre_B | Nombre_A |
++----------+----------+
+| A        | 1        |
+| A        | 2        |
+| A        | 3        |
+| A        | 4        |
+| A        | 5        |
+| B        | 1        |
+| B        | 2        |
+| B        | 3        |
+| B        | 4        |
+| B        | 5        |
+| C        | 1        |
+| C        | 2        |
+| C        | 3        |
+| C        | 4        |
+| C        | 5        |
+| D        | 1        |
+| D        | 2        |
+| D        | 3        |
+| D        | 4        |
+| D        | 5        |
+| E        | 1        |
+| E        | 2        |
+| E        | 3        |
+| E        | 4        |
+| E        | 5        |
++----------+----------+
+25 rows in set (0.00 sec)
+
+ MySQL  localhost:3306 ssl  evaluacion_2  SQL >select * from A mitabla_a;
++--------+
+| nombre |
++--------+
+| 1      |
+| 2      |
+| 3      |
+| 4      |
+| 5      |
++--------+
+5 rows in set (0.00 sec)
+
+ MySQL  localhost:3306 ssl  evaluacion_2  SQL > select * from A mitabla_a ;
++--------+
+| nombre |
++--------+
+| 1      |
+| 2      |
+| 3      |
+| 4      |
+| 5      |
++--------+
+5 rows in set (0.00 sec)
+
+ MySQL  localhost:3306 ssl  evaluacion_2  SQL > select mitabla_a.nombre from A mitabla_a ;
++--------+
+| nombre |
++--------+
+| 1      |
+| 2      |
+| 3      |
+| 4      |
+| 5      |
++--------+
+5 rows in set (0.00 sec)
